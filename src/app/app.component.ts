@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'myApp';
+  lbolUserLogu: boolean=false;
+  lstrUser:string='';
+  lstrPass:string='';
+
+  LogIn(){
+    this.lbolUserLogu=true;
+  }
+  LogOut(){
+    this.lbolUserLogu=false;
+  }
 }
