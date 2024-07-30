@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {DataService} from '../../services/data.service'
 
 @Component({
   selector: 'app-profile',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent {
+
+  constructor(private data:DataService){
+
+  }
+
+  fnGetAccounts(){
+    this.data.fnGetAccounts('Robin').subscribe({next: res =>{
+      console.log(res);
+
+    }})
+  }
 
 }

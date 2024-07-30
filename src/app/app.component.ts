@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import {DataService} from './services/data.service';
+import { ServiceService } from './services/service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,15 +9,33 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'myApp';
-  lbolUserLogu: boolean=false;
-  lstrUser:string='';
-  lstrPass:string='';
+  title = 'Mi aplicación bancaria';
+  lbolUserLogu: boolean = false;
+  lstrUser: string = 'Robin';
+  lstrPass: string = '1234';
+  lstrMessag: string = '';
 
-  LogIn(){
-    this.lbolUserLogu=true;
+  constructor(private apiService: DataService,public service: ServiceService, private router: Router){}
+
+  fnLogIN(){
+    this.apiService.fnValiUser(this.lstrUser,this.lstrPass).subscribe({next: res =>{
+      if (res[0].Status == 'OK'){
+        this.lbolUserLogu = true;
+        this.lstrMessag = '';
+        this.service.lstrUser = this.lstrUser;
+        this.router.navigate(['home']);
+      }else{
+        this.lbolUserLogu = false;
+        this.lstrMessag = res[0].NombUsua;
+      }
+    }});
   }
-  LogOut(){
-    this.lbolUserLogu=false;
+
+  fnLogOut(){
+    this.lbolUserLogu = false;
+  }
+
+  fnSignUp(){
+    this.service.lbolSignUp = true;
   }
 }
