@@ -1,4 +1,5 @@
 # MyApp
+![image](https://github.com/user-attachments/assets/e1cc363e-1d7c-466a-a950-17f450eb85f4)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.3.
 
