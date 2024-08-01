@@ -4,13 +4,14 @@ import { AngularSlickgridModule, ContainerService } from 'angular-slickgrid';
 
 import { AccountsRoutingModule } from './accounts-routing.module';
 import { AccountsComponent } from './accounts.component';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AccountsComponent
   ],
   imports: [
+    FormsModule,
     CommonModule,
     AccountsRoutingModule,
     AngularSlickgridModule.forRoot({
