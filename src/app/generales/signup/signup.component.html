@@ -1,5 +1,14 @@
 <p>signup works!</p>
-
+<span>Codigo Usuario</span>
+<input type="text" name="codiUser" [(ngModel)]="codiUser">
+<br>
+<span>Nombre Usuario</span>
+<input type="text" name="nameUser" [(ngModel)]="nameUser">
+<br>
+<span>Contraseña</span>
+<input type="text" name="password" [(ngModel)]="password">
+<br>
 <div>
-    <button type="button" (click)="fnCancel()">Cancelar</button>  
+  <button type="button" (click)="fnSignUp()">Registrar</button>
+  <button type="button" (click)="fnCancel()">Cancelar</button>
 </div>

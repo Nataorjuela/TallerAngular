@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { ServiceService } from '../../services/service.service';
 import { Column, GridOption } from 'angular-slickgrid';
+
 
 
 @Component({
@@ -9,22 +10,21 @@ import { Column, GridOption } from 'angular-slickgrid';
   templateUrl: './accounts.component.html',
   styleUrl: './accounts.component.scss'
 })
-export class AccountsComponent implements OnInit {
+export class AccountsComponent implements OnInit,OnChanges,DoCheck,AfterContentInit,AfterContentChecked,AfterViewInit {
 
   constructor(private data: DataService, private service: ServiceService){}
 
   CDAccounts: Column[] = [];
   GPAccounts: GridOption = {};
   dsAccounts: any[] = [];
-
   lAccounts: any[] = [];
-  lstrUser:string='Pedro';
+  codiUser:string='';
 
   ngOnInit(){
     this.GPAccounts = {
       autoResize: {container: '#idgridAccounts', rightPadding: 5},
       enableAutoResize: true,
-      gridHeight: 300,
+      gridHeight: 200,
       autoFitColumnsOnFirstLoad: false,
       enableAutoSizeColumns: false,
       autosizeColumnsByCellContentOnFirstLoad: true,
@@ -32,13 +32,37 @@ export class AccountsComponent implements OnInit {
     };
     this.CDAccounts.push({id: 'NumeCuent', name:'Número', field: 'NumeCuen', sortable: true, filterable: true});
     this.CDAccounts.push({id: 'NombCuent', name:'Nombre', field: 'NombCuen', sortable: true, filterable: true});
+
   }
 
   fnGetAccounts(){
-    this.data.fnGetAccounts(this. lstrUser).subscribe({
+    this.data.fnGetAccounts(this.codiUser).subscribe({
       next: res => {
         this.lAccounts = res;
         this.dsAccounts = res;
     }})
   }
+
+    ngOnChanges(changes: SimpleChanges): void {
+      console.log('ngOnchanges');
+    }
+
+    ngDoCheck(): void {
+      console.log('ngDoCheck');
+    }
+
+    ngAfterContentInit(): void {
+      console.log('ngAfterContentInit');
+    }
+
+    ngAfterContentChecked(): void {
+      console.log('ngAfterContentChecked');
+    }
+
+    ngAfterViewInit(): void {
+      console.log('ngAfterViewInit');
+    }
+
+
+
 }

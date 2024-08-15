@@ -1,3 +1,13 @@
-<p>profile works!</p>
-
+<span>Codigo Usuario</span>
+<input type="text" name="codiUser" [(ngModel)]="codiUser" (keyup)="fnValidProfile()">
+<br>
+<span>Codigo Usuario2</span>
+<input type="text" name="codiUser2" [(ngModel)]="codiUser2" (keyup)="fnValidProfile()">
+<br>
+<span>Nombre Usuario</span>
+<input type="text" name="nameUser" [(ngModel)]="nameUser">
+<br>
+<span>Contraseña</span>
+<input type="text" name="password" [(ngModel)]="password">
+<br>
 <button type="button"(click)="fnGetAccounts()">Get Accounts</button>

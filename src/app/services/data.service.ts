@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable,catchError } from 'rxjs';
 
 const httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})}
 
@@ -16,6 +16,8 @@ export class DataService {
 
 apiUrlValiUser: string = 'https://erpapipruebas.azurewebsites.net/api/values/valiuser';
 apiUrlGetAccounts: string = 'https://erpapipruebas.azurewebsites.net/api/values/GetAccounts';
+apiUrlValiProf: string = 'https://erpapipruebas.azurewebsites.net/api/values/valiprof';
+apiUrlSingUp: string = 'https://erpapipruebas.azurewebsites.net/api/values/signup';
 
 //Función para validar un usuario
 
@@ -38,6 +40,36 @@ fnGetAccounts(CodiUser: string): Observable<any>{
     return res;
   }));
 }
+
+fnValidProfile(CodiUser: string): Observable<any>{
+
+  let UserInfo: any[] = [];
+  UserInfo.push({'CodiUser':CodiUser});
+
+  return this.http.post(this.apiUrlValiProf,UserInfo,httpOptions).pipe(tap((res: any) => {
+    return res;
+  }));
+}
+
+fnSignUp(CodiUser: string,nameUser:string,password:string): Observable<any>{
+
+  let UserInfo: any[] = [];
+  UserInfo.push({'CodiUser':CodiUser,'NombUser':nameUser,'PassUser':password});
+
+  return this.http.post(this.apiUrlSingUp,UserInfo,httpOptions).pipe(tap((res: any) => {
+    console.log(res);
+    return res;
+  }));
+}
+
+
+
+
+
+
+
+
+
 
 }
 
