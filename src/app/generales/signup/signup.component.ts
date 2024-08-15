@@ -12,6 +12,7 @@ export class SignupComponent {
   nameUser:string='';
   password:string='';
   codiUser:string='';
+  lblMensaje: string='';
 
   constructor(public service: ServiceService,private dataService:DataService ){}
 
@@ -22,11 +23,18 @@ export class SignupComponent {
   fnSignUp(){
     let res = this.dataService.fnSignUp(this.codiUser,this.nameUser,this.password).subscribe({
       next: res =>{
-        console.log(res);
-      }
+        if(res[0].Status =='OK'){
+          console.log("Registro exitoso");
+          this.lblMensaje= 'Registro Exitoso';
+        }else{
+        console.log("Registro Fallido")
+          this.lblMensaje= 'Registro Fallido';
+        }
+      },
     })
-    console.log("Quedo Registrado");
   }
+
+
 
 
 }
