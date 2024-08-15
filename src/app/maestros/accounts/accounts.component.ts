@@ -21,7 +21,7 @@ export class AccountsComponent implements OnInit,OnChanges,DoCheck,AfterContentI
   codiUser:string='';
   lsrtNombreCuenta:string='';
   lsrtNumeCuenta:string='';
-
+  mensaje:string='';
 
   ngOnInit(){
     this.GPAccounts = {
@@ -50,6 +50,11 @@ export class AccountsComponent implements OnInit,OnChanges,DoCheck,AfterContentI
   fnSaveAccount(){
     this.data.fnSaveAccount(this.service.gCodiUser,this.lsrtNombreCuenta,this.lsrtNumeCuenta).subscribe({
       next: res => {
+        if(res[0].Status=="OK"){
+          this.mensaje='Cuenta Guardada Correctamente';
+        }else{
+          this.mensaje='La cuenta no puso ser Guardada -Error:' + res[0].Error;
+        }
        this.lAccounts=res;
        console.log('res desde save account: ',res);
     }})
