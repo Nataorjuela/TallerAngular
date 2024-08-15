@@ -18,7 +18,7 @@ apiUrlValiUser: string = 'https://erpapipruebas.azurewebsites.net/api/values/val
 apiUrlGetAccounts: string = 'https://erpapipruebas.azurewebsites.net/api/values/GetAccounts';
 apiUrlValiProf: string = 'https://erpapipruebas.azurewebsites.net/api/values/valiprof';
 apiUrlSingUp: string = 'https://erpapipruebas.azurewebsites.net/api/values/signup';
-
+apiUrlSaveAccount: string = 'https://erpapipruebas.azurewebsites.net/api/values/SaveAccount';
 //Función para validar un usuario
 
 fnValiUser(CodiUser: string, PassUser: string): Observable<any>{
@@ -62,14 +62,17 @@ fnSignUp(CodiUser: string,nameUser:string,password:string): Observable<any>{
   }));
 }
 
+fnSaveAccount(CodiUser: string,nombreCuen:string,numeCuen:string): Observable<any>{
 
+  let UserInfo: any[] = [];
+  UserInfo.push({'CodiUser':CodiUser,'NombCuen':nombreCuen,'NumeCuen':numeCuen});
 
+  return this.http.post(this.apiUrlSaveAccount,UserInfo,httpOptions).pipe(tap((res: any) => {
+    console.log(res);
+    return res;
+  }));
 
-
-
-
-
-
+}
 
 }
 

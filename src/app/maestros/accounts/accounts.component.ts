@@ -19,6 +19,9 @@ export class AccountsComponent implements OnInit,OnChanges,DoCheck,AfterContentI
   dsAccounts: any[] = [];
   lAccounts: any[] = [];
   codiUser:string='';
+  lsrtNombreCuenta:string='';
+  lsrtNumeCuenta:string='';
+
 
   ngOnInit(){
     this.GPAccounts = {
@@ -32,6 +35,7 @@ export class AccountsComponent implements OnInit,OnChanges,DoCheck,AfterContentI
     };
     this.CDAccounts.push({id: 'NumeCuent', name:'Número', field: 'NumeCuen', sortable: true, filterable: true});
     this.CDAccounts.push({id: 'NombCuent', name:'Nombre', field: 'NombCuen', sortable: true, filterable: true});
+    this.CDAccounts.push({id: 'CodiUser', name:'Codigo', field: 'CodiUser', sortable: true, filterable: true});
 
   }
 
@@ -40,6 +44,14 @@ export class AccountsComponent implements OnInit,OnChanges,DoCheck,AfterContentI
       next: res => {
         this.lAccounts = res;
         this.dsAccounts = res;
+    }})
+  }
+
+  fnSaveAccount(){
+    this.data.fnSaveAccount(this.service.gCodiUser,this.lsrtNombreCuenta,this.lsrtNumeCuenta).subscribe({
+      next: res => {
+       this.lAccounts=res;
+       console.log('res desde save account: ',res);
     }})
   }
 

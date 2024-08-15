@@ -9,6 +9,7 @@ export class ServiceService {
 
   lbolSignUp: boolean = false;
   lstrUser: string = '';
+  gCodiUser: string= '';
 
   private ResSubject = new Subject<any>();
   public ResObserver$ = this.ResSubject.asObservable();

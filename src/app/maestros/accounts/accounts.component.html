@@ -1,4 +1,6 @@
+
 <br>
+<label>Codigo Usuario:</label>
 <input type="text" maxlength="15" [(ngModel)]="codiUser">
 <br>
 <button type="button" (click)="fnGetAccounts()">Get Accounts</button>
@@ -11,6 +13,20 @@
       <th>NombCuen:{{ row.NombCuen }}</th>
     </tr>
 </table> -->
+<div>
+  <div>
+    <label>Nombre Cuenta:</label>
+    <input type="text" maxlength="15" [(ngModel)]="lsrtNombreCuenta">
+  </div>
+  <br>
+  <div>
+    <label>Número Cuenta:</label>
+    <input type="text" maxlength="15" [(ngModel)]="lsrtNumeCuenta">
+  </div>
+  <div>
+    <button type="button" (click)="fnSaveAccount()">Save Account</button>
+  </div>
+</div>
 <br>
 <br>
 <div>
@@ -22,3 +38,5 @@
         </angular-slickgrid>
     </div>
 </div>
+
+

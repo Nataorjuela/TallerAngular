@@ -34,7 +34,7 @@ export class AppComponent implements OnInit,DoCheck {
         //this.lbolUserLogu = true;
         this.lbolUserLogTemp = true;
         this.lstrMessag = '';
-        this.service.lstrUser = this.lstrUser;
+        this.service.gCodiUser = this.lstrUser;
         this.router.navigate(['home']);
       }else{
         this.lbolUserLogu = false;
