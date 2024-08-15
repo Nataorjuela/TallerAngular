@@ -73,12 +73,24 @@ fnDoSaveTransaction(){
             return;
           }
         }
-        this.transactions = res;
+        this.transactions=this.fnCalcBalances(res);
         this.respuesta= "Guardado exitoso";
       }
   });
 }
 
+fnCalcBalances(transactions:any[]): any[] {
+ var saldo:number=0;
+  for(var i = transactions.length-1;i>=0;i--){
+    if(transactions[i].Type=='Deposito'){
+      saldo +=transactions[i].Amount;
+    }else{
+      saldo-=transactions[i].Amount;
+    }
+    transactions[i].Balance=saldo;
+  }
+  return transactions;
+}
 
 
 }
