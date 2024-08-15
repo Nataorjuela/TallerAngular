@@ -14,9 +14,10 @@ export class ServiceService {
   private ResSubject = new Subject<any>();
   public ResObserver$ = this.ResSubject.asObservable();
 
-  constructor() { }
 
   fnSetResObserver(pvstrObserver:any){
     this.ResSubject.next(pvstrObserver);
   }
+
+  constructor() { }
 }

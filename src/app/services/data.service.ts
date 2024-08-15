@@ -19,8 +19,9 @@ apiUrlGetAccounts: string = 'https://erpapipruebas.azurewebsites.net/api/values/
 apiUrlValiProf: string = 'https://erpapipruebas.azurewebsites.net/api/values/valiprof';
 apiUrlSingUp: string = 'https://erpapipruebas.azurewebsites.net/api/values/signup';
 apiUrlSaveAccount: string = 'https://erpapipruebas.azurewebsites.net/api/values/SaveAccount';
-//Función para validar un usuario
+apiUrlSaveTransactions: string = 'https://erpapipruebas.azurewebsites.net/api/values/SaveTran';
 
+//Función para validar un usuario
 fnValiUser(CodiUser: string, PassUser: string): Observable<any>{
 
   let UserInfo: any[] = [];
@@ -71,8 +72,28 @@ fnSaveAccount(CodiUser: string,nombreCuen:string,numeCuen:string): Observable<an
     console.log(res);
     return res;
   }));
-
 }
+
+fnSaveTransaction(type: string,numeroCuenta:string,amount:string,categoria:string,descripcion:string,
+  estado:string){
+
+  let TransactionInfo: any[] = [];
+  TransactionInfo.push({
+    'Type':type,
+    'NumeCuen':numeroCuenta,
+    'Amount':amount,
+    'Categoria': categoria,
+    'Descripcion': descripcion,
+    'Estado': estado
+  });
+  console.log('entra en savetransaction');
+
+  return this.http.post(this.apiUrlSaveTransactions,TransactionInfo,httpOptions).pipe(tap((res: any) => {
+    console.log(res);
+    return res;
+  }));
+}
+
 
 }
 
