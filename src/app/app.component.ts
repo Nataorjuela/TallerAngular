@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import {DataService} from './services/data.service';
 import { ServiceService } from './services/service.service';
 import { Router } from '@angular/router';
@@ -8,19 +8,31 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit,DoCheck {
+
   title = 'Mi aplicación bancaria';
   lbolUserLogu: boolean = false;
+  lbolUserLogTemp:boolean=false;
   lstrUser: string = 'Robin';
   lstrPass: string = '1234';
   lstrMessag: string = '';
 
   constructor(private apiService: DataService,public service: ServiceService, private router: Router){}
 
+  ngOnInit():void{
+    this.lbolUserLogu= this.lbolUserLogTemp;
+  }
+
+  ngDoCheck():void{
+    console.log('docheck')
+    this.lbolUserLogu=this.lbolUserLogTemp;
+  }
+
   fnLogIN(){
     this.apiService.fnValiUser(this.lstrUser,this.lstrPass).subscribe({next: res =>{
       if (res[0].Status == 'OK'){
-        this.lbolUserLogu = true;
+        //this.lbolUserLogu = true;
+        this.lbolUserLogTemp = true;
         this.lstrMessag = '';
         this.service.lstrUser = this.lstrUser;
         this.router.navigate(['home']);
@@ -28,11 +40,14 @@ export class AppComponent {
         this.lbolUserLogu = false;
         this.lstrMessag = res[0].NombUsua;
       }
+    },error: err =>{console.log(err)},
+    complete: ()=>{
+      console.log('Completed')
     }});
   }
 
   fnLogOut(){
-    this.lbolUserLogu = false;
+    this.lbolUserLogTemp = false;
   }
 
   fnSignUp(){
