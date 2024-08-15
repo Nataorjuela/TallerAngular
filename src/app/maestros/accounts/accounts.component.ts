@@ -2,6 +2,7 @@ import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit,
 import { DataService } from '../../services/data.service';
 import { ServiceService } from '../../services/service.service';
 import { Column, GridOption } from 'angular-slickgrid';
+import { Subscription } from 'rxjs';
 
 
 
@@ -12,7 +13,7 @@ import { Column, GridOption } from 'angular-slickgrid';
 })
 export class AccountsComponent implements OnInit,OnChanges,DoCheck,AfterContentInit,AfterContentChecked,AfterViewInit {
 
-  constructor(private data: DataService, private service: ServiceService){}
+  constructor(private data: DataService, public service: ServiceService){}
 
   CDAccounts: Column[] = [];
   GPAccounts: GridOption = {};
@@ -22,8 +23,12 @@ export class AccountsComponent implements OnInit,OnChanges,DoCheck,AfterContentI
   lsrtNombreCuenta:string='';
   lsrtNumeCuenta:string='';
   mensaje:string='';
+  bPreguntar: boolean= false;
+  public subscription : Subscription = new Subscription();
 
   ngOnInit(){
+    this.codiUser=this.service.gCodiUser;
+    this.fnGetAccounts();
     this.GPAccounts = {
       autoResize: {container: '#idgridAccounts', rightPadding: 5},
       enableAutoResize: true,
@@ -48,17 +53,42 @@ export class AccountsComponent implements OnInit,OnChanges,DoCheck,AfterContentI
   }
 
   fnSaveAccount(){
-    this.data.fnSaveAccount(this.service.gCodiUser,this.lsrtNombreCuenta,this.lsrtNumeCuenta).subscribe({
-      next: res => {
-        if(res[0].Status=="OK"){
-          this.mensaje='Cuenta Guardada Correctamente';
-        }else{
-          this.mensaje='La cuenta no puso ser Guardada -Error:' + res[0].Error;
+
+    if(this.lsrtNombreCuenta == ''){
+      this.mensaje='Nombre de cuenta vacio';
+      return;
+    }
+    if(this.lsrtNumeCuenta == ''){
+      this.mensaje='Número de cuenta vacio';
+      return;
+    }
+    this.bPreguntar=true;
+
+    this.subscription = this.service.ResObserver$.subscribe((res:any)=>{
+      this.subscription.unsubscribe();
+      this.bPreguntar=false;
+        if(res=='si'){
+          this.fnDoSaveAccount();
         }
-       this.lAccounts=res;
-       console.log('res desde save account: ',res);
-    }})
+    });
+
   }
+
+  fnDoSaveAccount(){this.data.fnSaveAccount(this.service.gCodiUser,this.lsrtNombreCuenta,this.lsrtNumeCuenta).subscribe({
+    next: res => {
+
+      if(res[0].Status=="OK"){
+        this.mensaje='Cuenta Guardada Correctamente';
+      }else{
+        this.mensaje='La cuenta no puso ser Guardada - Error:' + res[0].Error;
+      }
+     this.lAccounts=res;
+     console.log('res desde save account: ',res);
+     this.codiUser=this.service.gCodiUser;
+     this.fnGetAccounts();
+
+  }})
+}
 
     ngOnChanges(changes: SimpleChanges): void {
       console.log('ngOnchanges');

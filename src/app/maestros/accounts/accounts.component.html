@@ -2,6 +2,13 @@
   {{mensaje}}
 </p>
 <br>
+<div *ngIf="this.bPreguntar ; then preguntar"></div>
+<ng-template #preguntar>
+<label>¿Confirma que desea guardar?</label>
+<button type="button" (click)="this.service.fnSetResObserver('si')">Si</button>
+<button type="button" (click)="this.service.fnSetResObserver('no')">No</button>
+</ng-template>
+
 <label>Codigo Usuario:</label>
 <input type="text" maxlength="15" [(ngModel)]="codiUser">
 <br>
