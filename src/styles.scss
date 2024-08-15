@@ -5,3 +5,6 @@ $row-mouse-hover-color: lightgreen;
 
 /* make sure to add the @import the SlickGrid Bootstrap Theme AFTER the variables changes */
 @import '@slickgrid-universal/common/dist/styles/sass/slickgrid-theme-bootstrap.scss';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

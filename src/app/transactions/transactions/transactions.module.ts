@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { TransactionsRoutingModule } from './transactions-routing.module';
 import { TransactionsComponent } from './transactions.component';
 import { FormsModule } from '@angular/forms';
-import { AngularSlickgridModule,ContainerService } from 'angular-slickgrid';
+import { AngularSlickgridModule, ContainerService } from 'angular-slickgrid';
 
 
 @NgModule({
@@ -12,11 +11,17 @@ import { AngularSlickgridModule,ContainerService } from 'angular-slickgrid';
     TransactionsComponent
   ],
   imports: [
+    FormsModule,
     CommonModule,
     TransactionsRoutingModule,
-    FormsModule,
-    AngularSlickgridModule.forRoot()
-  ]
+    AngularSlickgridModule.forRoot({
+      enableCellNavigation: true,
+      autoHeight: false,
+      enableRowSelection: true,
+      enableFiltering: true,
+      gridMenu: {hideForceFitButton: true}
+    })
+  ],
+  providers: [ContainerService]
 })
-
 export class TransactionsModule { }

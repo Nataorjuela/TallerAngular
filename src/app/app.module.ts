@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { SignupModule } from './generales/signup/signup.module';
 import { loggingInterceptor } from './interceptors/logging.interceptor';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { loggingInterceptor } from './interceptors/logging.interceptor';
   providers: [
     provideClientHydration(),
     provideHttpClient(withInterceptors([loggingInterceptor])),
+    provideAnimationsAsync(),
   ],
   bootstrap: [AppComponent]
 })
