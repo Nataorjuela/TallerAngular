@@ -1,60 +1,66 @@
-<div *ngIf="this.respuesta !== '' ; then alertTemplate"></div>
-<ng-template #alertTemplate>
-  <div class="alert alert-primary" role="alert">{{respuesta}}</div>
-</ng-template>
+<mat-tab-group animationDuration="0ms">
+  <mat-tab label="Nueva Transacción">
+    <ng-template matTabContent>
+  <div *ngIf="this.respuesta !== '' ; then alertTemplate"></div>
+  <ng-template #alertTemplate>
+    <div class="alert alert-primary" role="alert">{{respuesta}}</div>
+  </ng-template>
+    <div *ngIf="this.bValidar ; then validar"></div>
+    <ng-template #validar>
+      <label>¿Confirma que desea enviar la transacción?</label>
+      <button type="button" (click)="this.service.fnSetResObserver('si')">Si</button>
+      <button type="button" (click)="this.service.fnSetResObserver('no')">No</button>
+    </ng-template>
 
-<div *ngIf="this.bValidar ; then validar"></div>
-<ng-template #validar>
-  <label>¿Confirma que desea enviar la transacción?</label>
-  <button type="button" (click)="this.service.fnSetResObserver('si')">Si</button>
-  <button type="button" (click)="this.service.fnSetResObserver('no')">No</button>
-</ng-template>
+    <div>
+      <div>
+        <label>Tipo:</label>
+        <select class="form-select" [(ngModel)]="sTipo">
+          <option value="Deposito">Deposito</option>
+          <option value="Retiro">Retiro</option>
+        </select>
+      </div>
 
-<div>
-  <div>
-    <label>Tipo:</label>
-    <select class="form-select" [(ngModel)]="sTipo">
-      <option value="Deposito">Deposito</option>
-      <option value="Retiro">Retiro</option>
-    </select>
-  </div>
+      <div>
+        <label>Número Cuenta:</label>
+        <input type="text" maxlength="15" [(ngModel)]="sNumeroCuenta">
+      </div>
 
-  <div>
-    <label>Número Cuenta:</label>
-    <input type="text" maxlength="15" [(ngModel)]="sNumeroCuenta">
-  </div>
+      <div>
+          <label>Monto:</label>
+          <input name="monto" type="number" maxlength="15" [(ngModel)]="sAmount">
+      </div>
 
-  <div>
-      <label>Monto:</label>
-      <input name="monto" type="number" maxlength="15" [(ngModel)]="sAmount">
-  </div>
+      <div>
+        <label>Categoria:</label>
+        <input type="text" maxlength="15" [(ngModel)]="sCategoria">
+      </div>
 
-  <div>
-    <label>Categoria:</label>
-    <input type="text" maxlength="15" [(ngModel)]="sCategoria">
-  </div>
+      <div>
+        <label>Descripción:</label>
+        <input type="text" maxlength="15" [(ngModel)]="sDescripcion">
+      </div>
 
-  <div>
-    <label>Descripción:</label>
-    <input type="text" maxlength="15" [(ngModel)]="sDescripcion">
-  </div>
+      <div>
+        <label>Estado:</label>
+        <select class="form-select" aria-label="Default select example"  [(ngModel)]="sEstado">
+          <option value="Activo">Activo</option>
+          <option value="Inactivo">Inactivo</option>
+        </select>
+      </div>
 
-  <div>
-    <label>Estado:</label>
-    <select class="form-select" aria-label="Default select example"  [(ngModel)]="sEstado">
-      <option value="Activo">Activo</option>
-      <option value="Inactivo">Inactivo</option>
-    </select>
-  </div>
+      <button type="button" (click)="fnSaveTransaction()">Save Transaction</button>
 
-  <button type="button" (click)="fnSaveTransaction()">Save Transaction</button>
-
-</div>
-
-<div id="idgridTransactions" class="grid">
-  <angular-slickgrid gridId="gridTransactions" [gridOptions]="GOTransactions" [columnDefinitions]="columnDefinitions"
-      [dataset]="transactions">
-  </angular-slickgrid>
-</div>
-
+    </div>
+  </ng-template>
+</mat-tab>
+<mat-tab label="Transacciones">
+  <ng-template matTabContent>
+    <div id="idgridTransactions" class="grid">
+      <angular-slickgrid gridId="gridTransactions" [gridOptions]="GOTransactions" [columnDefinitions]="columnDefinitions"
+          [dataset]="transactions">
+      </angular-slickgrid>
+    </div>
+  </ng-template>
+</mat-tab>
 

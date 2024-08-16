@@ -4,12 +4,14 @@ import { TransactionsComponent } from './transactions.component';
 import { FormsModule } from '@angular/forms';
 import { TransactionsRoutingModule } from './transactions-routing.module';
 import { AngularSlickgridModule, ContainerService } from 'angular-slickgrid';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
     TransactionsComponent
   ],
   imports: [
+    MatTabsModule,
     FormsModule,
     CommonModule,
     TransactionsRoutingModule,
