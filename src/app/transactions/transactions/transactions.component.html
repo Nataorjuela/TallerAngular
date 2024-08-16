@@ -1,4 +1,4 @@
-<mat-tab-group animationDuration="1ms">
+<mat-tab-group animationDuration="0ms">
   <mat-tab label="Nueva Transacción">
     <ng-template matTabContent>
       <div *ngIf="respuesta !== ''" class="alert-container">
@@ -32,22 +32,22 @@
 
         <mat-form-field appearance="fill">
           <mat-label>Número Cuenta</mat-label>
-          <input matInput type="text" maxlength="15" [(ngModel)]="sNumeroCuenta">
+          <input matInput type="text" maxlength="15" [(ngModel)]="sNumeroCuenta" name="numeroCuenta">
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Monto</mat-label>
-          <input matInput type="number" [(ngModel)]="sAmount">
+          <input matInput type="number" [(ngModel)]="sAmount" name="monto">
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Categoría</mat-label>
-          <input matInput type="text" maxlength="15" [(ngModel)]="sCategoria">
+          <input matInput type="text" maxlength="15" [(ngModel)]="sCategoria" name="categoria">
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Descripción</mat-label>
-          <input matInput type="text" maxlength="15" [(ngModel)]="sDescripcion">
+          <input matInput type="text" maxlength="15" [(ngModel)]="sDescripcion" name="descripcion">
         </mat-form-field>
 
         <mat-form-field appearance="fill">
