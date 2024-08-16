@@ -8,6 +8,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { SignupModule } from './generales/signup/signup.module';
 import { loggingInterceptor } from './interceptors/logging.interceptor';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     FormsModule,
     SignupModule,
     MatMenuModule,
+    MatButtonModule
 
   ],
   providers: [

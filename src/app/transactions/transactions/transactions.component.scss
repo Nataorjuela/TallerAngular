@@ -1,0 +1,109 @@
+// Variables
+$primary-color: #4ca3af;
+$accent-color: #f06292; // Rosa para los inputs
+$warn-color: #f44336;
+$button-border-radius: 4px;
+
+// General Styles
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  color: $primary-color;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+// Input Styles
+.mat-form-field {
+  .mat-form-field-flex {
+    background-color: $accent-color;
+    border-radius: $button-border-radius;
+  }
+
+  .mat-form-field-infix {
+    padding: 0 12px;
+  }
+
+  .mat-input-element {
+    color: #333;
+  }
+
+  .mat-label {
+    color: darken($accent-color, 20%);
+  }
+}
+
+// Alert and Confirmation Cards
+.alert-container,
+.confirmation-container {
+  margin-bottom: 20px;
+}
+
+.alert-card,
+.confirmation-card {
+  background-color: #fff;
+  border-radius: $button-border-radius;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+// Buttons
+button {
+  border-radius: $button-border-radius;
+  padding: 10px 20px;
+  font-size: 16px;
+
+  &.mat-raised-button {
+    transition: background-color 0.3s, box-shadow 0.3s;
+
+    &:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  &.mat-stroked-button {
+    border-width: 2px;
+    border-radius: $button-border-radius;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+  }
+
+  &.mat-raised-button.mat-primary {
+    background-color: $primary-color;
+    color: #fff;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+
+  &.mat-raised-button.mat-accent {
+    background-color: $accent-color;
+    color: #fff;
+
+    &:hover {
+      background-color: darken($accent-color, 10%);
+    }
+  }
+
+  &.mat-raised-button.mat-warn {
+    background-color: $warn-color;
+    color: #fff;
+
+    &:hover {
+      background-color: darken($warn-color, 10%);
+    }
+  }
+}

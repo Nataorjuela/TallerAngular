@@ -13,29 +13,29 @@
     <div *ngIf="this.lbolUserLogu; then thenBlock else elseBlock"></div>
     <ng-template #thenBlock>
       <div>
-        <button type="button" class="btn btn-primary" routerLink="/home">Home</button>
-        <button type="button" class="btn btn-primary" routerLink="/profile">Profile</button>
-        <button type="button" class="btn btn-primary" routerLink="/accounts">Accounts</button>
-        <button type="button" class="btn btn-primary" routerLink="/transactions">Transactions</button>
-        <button type="button" class="btn btn-primary" routerLink="/dashboard">Dashboard</button>
-        <button type="button" class="btn btn-primary" (click)="fnLogOut()">Salir</button>
+        <button mat-raised-button color="primary" routerLink="/home">Home</button>
+        <button mat-raised-button color="primary" routerLink="/profile">Profile</button>
+        <button mat-raised-button color="primary" routerLink="/accounts">Accounts</button>
+        <button mat-raised-button color="primary" routerLink="/transactions">Transactions</button>
+        <button mat-raised-button color="primary" routerLink="/dashboard">Dashboard</button>
+        <button mat-raised-button color="warn" (click)="fnLogOut()">Salir</button>
       </div>
       <div>
-        <button  class="btn btn-md btn-outline-primary" routerLink="/home">Home</button>
-        <button  class="btn btn-md btn-outline-primary" mat-button [matMenuTriggerFor]="menppal">Menú principal</button>
-        <button  class="btn btn-md btn-outline-primary" (click)="fnLogOut()">Salir</button>
+        <button mat-stroked-button color="primary" routerLink="/home">Home</button>
+        <button mat-stroked-button color="primary" [matMenuTriggerFor]="menppal">Menú principal</button>
+        <button mat-stroked-button color="warn" (click)="fnLogOut()">Salir</button>
         <mat-menu #menppal="matMenu">
-          <button class="btn btn-md btn-outline-primary" mat-menu-item [matMenuTriggerFor]="menmaestros">Maestros</button>
-          <button class="btn btn-md btn-outline-primary" mat-menu-item [matMenuTriggerFor]="mentransactions">Transacciones</button>
-          <button class="btn btn-md btn-outline-primary" mat-menu-item routerLink="/home">Home</button>
+          <button mat-menu-item routerLink="/profile">Profile</button>
+          <button mat-menu-item routerLink="/accounts">Accounts</button>
+          <button mat-menu-item routerLink="/home">Home</button>
         </mat-menu>
         <mat-menu #menmaestros>
-          <button class="btn btn-md btn-outline-primary" mat-menu-item routerLink="/profile">Profile</button>
-          <button class="btn btn-md btn-outline-primary" mat-menu-item routerLink="/accounts">Accounts</button>
+          <button mat-menu-item routerLink="/profile">Profile</button>
+          <button mat-menu-item routerLink="/accounts">Accounts</button>
         </mat-menu>
         <mat-menu #mentransactions>
-          <button class="btn btn-md btn-outline-primary" mat-menu-item routerLink="/transactions">Transactions</button>
-          <button class="btn btn-md btn-outline-primary" mat-menu-item routerLink="/dashboard">Dashboard</button>
+          <button mat-menu-item routerLink="/transactions">Transactions</button>
+          <button mat-menu-item routerLink="/dashboard">Dashboard</button>
         </mat-menu>
       </div>
       <router-outlet />
@@ -51,13 +51,13 @@
           <input type="text" maxlength="15" [(ngModel)]="lstrPass">
         </div>
         <div>
-          <button type="button" (click)="fnLogIN()">login</button>
+          <button mat-raised-button color="primary" (click)="fnLogIN()">login</button>
         </div>
         <div>
           <br>
           <label>{{lstrMessag}}</label>
           <br><br>
-          <button type="button" (click)="fnSignUp()">Sign Up</button>
+          <button mat-raised-button color="accent" (click)="fnSignUp()">Sign Up</button>
         </div>
       </div>
     </ng-template>

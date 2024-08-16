@@ -1,5 +1,11 @@
+/* Variables */
+$primary-color: #d854ac;
+$primary-button-bg: #2b94a1;
+$primary-button-hover-bg: #45a049;
+$border-radius: 8px;
+$box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-// Estilos generales
+/* General Styles */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
@@ -8,46 +14,67 @@ body {
   padding: 20px;
 }
 
-// Estilo para el título
+/* Title */
 h1 {
-  color: #4ca3af;
+  color: $primary-color;
   text-align: center;
   margin-bottom: 20px;
 }
 
-// Estilos para el contenedor principal
-div {
+/* Main Container */
+.container {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
 }
 
-// Estilos para los botones
-button {
+/* Buttons */
+.btn {
   display: inline-block;
   margin: 5px 0;
   padding: 10px 20px;
   font-size: 16px;
   color: #fff;
-  background-color: #2b94a1;
+  background-color: $primary-button-bg;
   border: none;
-  border-radius: 4px;
+  border-radius: $border-radius;
   cursor: pointer;
   transition: background-color 0.3s ease;
+
+  &.btn-primary {
+    background-color: $primary-button-bg;
+
+    &:hover {
+      background-color: $primary-button-hover-bg;
+    }
+  }
+
+  &.btn-outline-primary {
+    background-color: transparent;
+    border: 2px solid $primary-button-bg;
+    color: $primary-button-bg;
+
+    &:hover {
+      background-color: $primary-button-bg;
+      color: #fff;
+    }
+  }
+
+  &.btn-md {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
 }
 
-button:hover {
-  background-color: #45a049;
-}
-
-// Estilos para los inputs y labels
+/* Inputs and Labels */
 label {
   display: block;
   margin: 10px 0 5px;
   font-weight: bold;
+  color: #eb6ae4;
 }
 
 input[type="text"] {
@@ -55,17 +82,17 @@ input[type="text"] {
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: $border-radius;
 }
 
-// Estilos para mensajes
-label[ng-reflect-ng-if="true"] {
+/* Alert and Message */
+.alert-message {
   color: red;
   font-weight: bold;
   text-align: center;
+  margin: 10px 0;
 }
 
-// Espaciado adicional para el botón de Sign Up
-button[ng-reflect-ng-if="true"] {
+.signup-button {
   margin-top: 20px;
 }
